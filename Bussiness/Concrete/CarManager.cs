@@ -17,7 +17,11 @@ namespace Bussiness.Concrete
 
         public void Add(Car car)
         {
-            _iCarDal.Add(car);
+            if (car.CarName.Length >= 2 && car.DailyPrice>0)
+            {
+                _iCarDal.Add(car);
+                Console.WriteLine(car.CarName+" added successfully!");
+            }
         }
 
         public void Delete(Car car)
@@ -34,7 +38,7 @@ namespace Bussiness.Concrete
 
         public Car GetById(int carId)
         {
-           return _iCarDal.GetById(carId);
+           return _iCarDal.GetById(c=>c.Id==carId);
         }
 
         public void Update(Car car)
