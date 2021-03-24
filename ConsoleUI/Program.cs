@@ -26,10 +26,10 @@ namespace ConsoleUI
             Car car4 = new Car { BrandId = 1, ColorId = 4, ModelYear = 2020, DailyPrice = 350, Description = "Kiralık peugeot", CarName = "Peugeot" };
 
           
-            foreach (var Car in carManager.GetAll())
+            foreach (var Car in carManager.GetCarDetails())
             {
                 counter++;
-                Console.WriteLine(counter + "-" + Car.CarName);
+                Console.WriteLine(counter + "-" + Car.CarName+"Brand: "+Car.Name);
             }
 
 
