@@ -29,7 +29,7 @@ namespace ConsoleUI
             foreach (var Car in carManager.GetCarDetails())
             {
                 counter++;
-                Console.WriteLine(counter + "-" + Car.CarName+"Brand: "+Car.Name);
+                Console.WriteLine(counter + "-" + Car.CarName+"\nBrand: "+Car.BrandName+ "\nColor: " + Car.ColorName+ "\nDaily price: " + Car.DailyPrice+ "\n-------------------------");
             }
 
 
