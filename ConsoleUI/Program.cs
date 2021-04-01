@@ -10,14 +10,15 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            int counter=0;
+            int counter = 0;
             EfCarDal efCarDal = new EfCarDal();
             CarManager carManager = new CarManager(efCarDal);
+            EfBrandDal efBrandDal = new EfBrandDal();
+            BrandManager brandManager = new BrandManager(efBrandDal);
 
-            
-          
-           
-            Car car1 = new Car { BrandId = 3, ColorId = 3, ModelYear = 2020, DailyPrice = 250, Description = "Kiralık Sedan" ,CarName="Sedan"};
+
+
+            Car car1 = new Car { BrandId = 3, ColorId = 3, ModelYear = 2020, DailyPrice = 250, Description = "Kiralık Sedan", CarName = "Sedan" };
 
             Car car2 = new Car { BrandId = 5, ColorId = 4, ModelYear = 2020, DailyPrice = 0, Description = "Kiralık peugeot", CarName = "Peugeot" };
 
@@ -25,18 +26,34 @@ namespace ConsoleUI
 
             Car car4 = new Car { BrandId = 1, ColorId = 4, ModelYear = 2020, DailyPrice = 350, Description = "Kiralık peugeot", CarName = "Peugeot" };
 
-          
-            foreach (var Car in carManager.GetCarDetails())
+            // GetCarDetailsTest(counter, carManager);
+           // GetAllBrandsTest(counter, brandManager);
+
+        }
+
+        private static void GetAllBrandsTest(int counter, BrandManager brandManager)
+        {
+            foreach (var Brand in brandManager.GetAll().Data)
             {
                 counter++;
-                Console.WriteLine(counter + "-" + Car.CarName+"\nBrand: "+Car.BrandName+ "\nColor: " + Car.ColorName+ "\nDaily price: " + Car.DailyPrice+ "\n-------------------------");
+                Console.WriteLine(counter+"-"+brandManager.GetAll().Message + "  " + Brand.BrandName);
+
             }
 
+            
+        }
 
+        private static void GetCarDetailsTest(int counter, CarManager carManager)
+        {
+            foreach (var Car in carManager.GetCarDetails().Data)
+            {
+                counter++;
+                Console.WriteLine(carManager.GetCarDetails().Message);
+                Console.WriteLine(counter + "-" + Car.CarName + "\nBrand: " + Car.BrandName + "\nColor: " + Car.ColorName + "\nDaily price: " + Car.DailyPrice + "\n-------------------------");
 
+            }
 
-
-
+           
         }
     }
 }

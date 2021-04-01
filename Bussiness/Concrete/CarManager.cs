@@ -1,4 +1,6 @@
 ﻿using Bussiness.Abstract;
+using Bussiness.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -16,40 +18,47 @@ namespace Bussiness.Concrete
             _iCarDal = iCarDal; ;
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
             if (car.CarName.Length >= 2 && car.DailyPrice>0)
             {
                 _iCarDal.Add(car);
-                Console.WriteLine(car.CarName+" added successfully!");
+                return new SuccessResult(Messages.CarAdded);
+            }
+            else
+            {
+                return new ErrorResult(Messages.CarNameInvalid);
             }
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             _iCarDal.Delete(car);
+            return new SuccessResult(Messages.CarDeleted);
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
             //If Bussiness Conditions Happens,here works.
-            return _iCarDal.GetAll();
+            return new SuccessDataResult<List<Car>>(_iCarDal.GetAll(),Messages.CarsListed);
+
 
         }
 
-        public Car GetById(int carId)
+        public IDataResult<Car> GetById(int carId)
         {
-           return _iCarDal.GetById(c=>c.Id==carId);
+           return new SuccessDataResult<Car>(_iCarDal.GetById(c=>c.Id==carId));
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return _iCarDal.GetCarDetails();
+            return new SuccessDataResult<List<CarDetailDto>> (_iCarDal.GetCarDetails(),Messages.CarDetailsListed);
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
             _iCarDal.Update(car);
+            return new SuccessResult();
         }
     }
 }
