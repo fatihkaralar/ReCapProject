@@ -34,7 +34,8 @@ namespace Bussiness.Constants
 
         public static string ColorsListed = "Colors listed successfully";
 
+        public static string CarNotReturned = "The car is not returned yet.";
 
-
+        public static string CarRented = "The car rented successfully";
     }
 }

@@ -13,8 +13,32 @@ namespace ConsoleUI
             int counter = 0;
             EfCarDal efCarDal = new EfCarDal();
             CarManager carManager = new CarManager(efCarDal);
+
             EfBrandDal efBrandDal = new EfBrandDal();
             BrandManager brandManager = new BrandManager(efBrandDal);
+
+            EfRentalDal efRentalDal = new EfRentalDal();
+            RentalManager rentalManager = new RentalManager(efRentalDal);
+
+            EfUserDal efUserDal = new EfUserDal();
+            UserManager userManager = new UserManager(efUserDal);
+
+            EfCustomerDal efCustomerDal = new EfCustomerDal();
+            CustomerManager customerManager = new CustomerManager(efCustomerDal);
+
+          
+
+
+            
+            User user = new User { FirstName = "Fatih", LastName = "KARALAR", Email = "fthkrlr@hotmail.com", Password = "******" ,Id=4};
+            Customer customer = new Customer { CompanyName = "Fatih KARALAR",UserId=4,Id=12};
+           // userManager.Add(user);
+           customerManager.Add(customer);
+
+
+
+           
+            
 
 
 
@@ -25,6 +49,9 @@ namespace ConsoleUI
             Car car3 = new Car { BrandId = 6, ColorId = 1, ModelYear = 2001, DailyPrice = 100, Description = "Kiralık Hyundai", CarName = "Hyundai" };
 
             Car car4 = new Car { BrandId = 1, ColorId = 4, ModelYear = 2020, DailyPrice = 350, Description = "Kiralık peugeot", CarName = "Peugeot" };
+
+            Car car5 =new Car { BrandId = 1, ColorId = 4, ModelYear = 2020, DailyPrice = 350, Description = "Kiralık peugeot", CarName = "Peugeot" };
+           
 
             // GetCarDetailsTest(counter, carManager);
            // GetAllBrandsTest(counter, brandManager);
